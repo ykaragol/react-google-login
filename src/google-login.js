@@ -16,6 +16,7 @@ const GoogleLogin = props => {
     tag,
     type,
     className,
+    style,
     disabledStyle,
     buttonText,
     children,
@@ -96,22 +97,22 @@ const GoogleLogin = props => {
 
   const defaultStyle = (() => {
     if (disabled) {
-      return Object.assign({}, initialStyle, disabledStyle)
+      return Object.assign({}, initialStyle, style, disabledStyle)
     }
 
     if (active) {
       if (theme === 'dark') {
-        return Object.assign({}, initialStyle, activeStyle)
+        return Object.assign({}, initialStyle, style, activeStyle)
       }
 
-      return Object.assign({}, initialStyle, activeStyle)
+      return Object.assign({}, initialStyle, style, activeStyle)
     }
 
     if (hovered) {
-      return Object.assign({}, initialStyle, hoveredStyle)
+      return Object.assign({}, initialStyle, style, hoveredStyle)
     }
 
-    return initialStyle
+    return Object.assign({}, initialStyle, style)
   })()
   const googleLoginButton = React.createElement(
     tag,
@@ -155,6 +156,7 @@ GoogleLogin.propTypes = {
   loginHint: PropTypes.string,
   hostedDomain: PropTypes.string,
   children: PropTypes.node,
+  style: PropTypes.object,
   disabledStyle: PropTypes.object,
   fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,
